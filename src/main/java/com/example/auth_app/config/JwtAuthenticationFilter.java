@@ -43,6 +43,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // authentication process again SecurityContextHolder.getContext().getAuthentication() check is user authenticated or not.
         if(userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+           if(jwtService.isTokenValid(jwt, userDetails)) {
+               
+           }
         }
     }
 }
